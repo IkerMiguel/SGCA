@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +24,9 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        //
+        $vehiculos = DB::table('vehiculos')
+            ->get();
+        return view('Vehiculo.new', ['vehiculos' => $vehiculos]);
     }
 
     /**
@@ -31,7 +34,19 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vehiculo = new Vehiculo();
+
+        $vehiculo->marca = $request->marca;
+        $vehiculo->modelo = $request->modelo;
+        $vehiculo->año = $request->año;
+        $vehiculo->precio = $request->precio;
+        $vehiculo->kilometraje = $request->kilometraje;
+        $vehiculo->tipo = $request->tipo;
+
+        $vehiculo->save();
+        $vehiculos = DB::table('vehiculos')
+            ->get();
+        return view('Vehiculo.index', ['vehiculos' => $vehiculos]);
     }
 
     /**
