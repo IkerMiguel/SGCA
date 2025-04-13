@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('marca', 255);
             $table->string('modelo', 255);
             $table->year('año');
-            $table->decimal('precio', total:8, places:2);
+            $table->decimal('precio', total:12, places:2);
             $table->integer('kilometraje');
-            $table->enum('tipo', ['sedan', 'suv', 'coupe']);
+            $table->string('tipo',255);
             $table->timestamps();
         });
     }
