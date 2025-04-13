@@ -43,7 +43,14 @@
                                             <td>{{ $vehiculo->kilometraje }}</td>
                                             <td>{{ $vehiculo->tipo }}</td>
                                             <td>
-                                                Actions
+                                                <form action="{{ route('vehiculos.destroy', ['vehiculo' => $vehiculo->id]) }}"
+                                                    method='POST' style="display: inline-block">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <input
+                                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                                                        type="submit" value="Delete">
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

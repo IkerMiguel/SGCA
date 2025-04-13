@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/vehiculos', [VehiculoController::class, 'index'])->name('vehiculos.index');
     Route::post('/vehiculos', [VehiculoController::class, 'store'])->name('vehiculos.store');
     Route::get('/vehiculos/create', [VehiculoController::class, 'create'])->name('vehiculos.create');
+    Route::delete('/vehiculos/{vehiculo}', [VehiculoController::class, 'destroy'])->name('vehiculos.destroy');
 });
 
 require __DIR__.'/auth.php';
