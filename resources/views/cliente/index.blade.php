@@ -29,12 +29,12 @@
                 <tbody>
                     @foreach ($clientes as $cliente)
                         <tr>
-                            <th scope="row">{{ $clientes -> id }}</th>
-                            <td>{{ $clientes -> nombre }}</td>
-                            <td>{{ $clientes -> apellido }}</td>
-                            <td>{{ $clientes -> telefono }}</td>
-                            <td>{{ $clientes -> email }}</td>
-                            <td>{{ $clientes -> direccion }}</td>
+                            <td>{{ $cliente -> id }}</td>
+                            <td>{{ $cliente -> nombre }}</td>
+                            <td>{{ $cliente -> apellido }}</td>
+                            <td>{{ $cliente -> telefono }}</td>
+                            <td>{{ $cliente -> email }}</td>
+                            <td>{{ $cliente -> direccion }}</td>
                             <td><span>Actions</span></td>
                         </tr>
                    @endforeach     
