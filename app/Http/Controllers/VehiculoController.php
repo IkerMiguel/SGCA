@@ -62,7 +62,8 @@ class VehiculoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $vehiculo = Vehiculo::find($id);
+        return view('vehiculo.edit', ['vehiculo' => $vehiculo]);
     }
 
     /**
@@ -70,7 +71,19 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $vehiculo = Vehiculo::find($id);
+
+        $vehiculo->marca = $request->marca;
+        $vehiculo->modelo = $request->modelo;
+        $vehiculo->año = $request->año;
+        $vehiculo->precio = $request->precio;
+        $vehiculo->kilometraje = $request->kilometraje;
+        $vehiculo->tipo = $request->tipo;
+
+        $vehiculo->save();
+        $vehiculos = DB::table('vehiculos')
+            ->get();
+        return view('Vehiculo.index', ['vehiculos' => $vehiculos]);
     }
 
     /**
