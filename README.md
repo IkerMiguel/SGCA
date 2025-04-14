@@ -64,3 +64,74 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# SGCA - Sistema de Gestión y Control de Asistencias
+
+SGCA es una aplicación web construida con el framework Laravel y tecnologías modernas de frontend como Vite y Tailwind CSS. Este documento proporciona una guía completa para instalar, configurar y ejecutar el sistema en un entorno de desarrollo local.
+
+## Requisitos del sistema
+
+Antes de comenzar, asegúrate de tener instalado lo siguiente en tu entorno:
+
+- PHP versión 8.1 o superior
+- Composer (gestor de dependencias de PHP)
+- Node.js versión 16 o superior
+- NPM o Yarn (gestores de paquetes JavaScript)
+- MySQL o MariaDB (como sistema gestor de base de datos)
+- Git (para clonar el repositorio)
+
+## Pasos para la instalación y ejecución
+
+1. Clona el repositorio del proyecto en tu máquina utilizando Git. Una vez clonado, navega dentro del directorio principal del proyecto: git clone <REPO_URL>
+
+
+2. Instala las dependencias necesarias para el backend mediante Composer. Este comando descargará todos los paquetes requeridos por Laravel: composer install
+
+
+3. Instala las dependencias del frontend utilizando NPM. Esto incluye Vite, Tailwind y otros paquetes para la interfaz: npm install
+
+
+4. Copia el archivo `.env.example` y renómbralo como `.env`. Este archivo contendrá la configuración del entorno, incluyendo conexión a la base de datos y claves de la aplicación: cp .env.example .env
+
+
+5. Genera la clave de la aplicación. Laravel requiere una clave única para cifrado interno, la cual se puede generar automáticamente con el siguiente comando: php artisan key:generate
+
+
+6. Configura la conexión a la base de datos editando el archivo `.env` con tus credenciales de MySQL o MariaDB. Asegúrate de que la base de datos especificada ya esté creada:
+
+B_CONNECTION=mysql 
+DB_HOST=127.0.0.1 
+DB_PORT=3306 
+DB_DATABASE=nombre_de_tu_bd 
+DB_USERNAME=tu_usuario 
+DB_PASSWORD=tu_contraseña
+
+7. Ejecuta las migraciones para crear las tablas necesarias en la base de datos. Si el proyecto cuenta con seeders para datos de prueba, puedes incluirlos también: php artisan migrate
+
+
+8. Levanta el servidor de desarrollo de Laravel utilizando Artisan. Esto te permitirá acceder a la aplicación desde el navegador: php artisan serve
+
+
+9. En una terminal aparte, ejecuta el proceso de desarrollo del frontend. Este comando iniciará Vite, que compilará los archivos de JavaScript y CSS, y los actualizará automáticamente al realizar cambios: npm run dev
+
+
+10. Finalmente, abre tu navegador y accede a la siguiente URL para ver la aplicación en funcionamiento: npm run dev
+
+
+
+## Estructura general del proyecto
+
+- `app/`: Lógica de la aplicación, incluyendo modelos, controladores y servicios.
+- `routes/`: Archivos que definen las rutas web y API.
+- `resources/`: Contiene las vistas Blade, archivos SCSS/CSS y JS del frontend.
+- `public/`: Carpeta pública del servidor donde se sirve la aplicación.
+- `database/`: Migraciones, seeders y factories.
+- `config/`: Archivos de configuración del framework y los paquetes.
+- `tests/`: Pruebas automatizadas para el proyecto.
+
+## Notas finales
+
+Este proyecto está pensado para ser ejecutado en un entorno local de desarrollo. Si planeas desplegarlo en un servidor de producción, asegúrate de configurar adecuadamente aspectos como cache, logs, seguridad, backups y variables de entorno. Puedes adaptar esta guía según tus necesidades o entorno específico.
+
+
