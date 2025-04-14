@@ -22,7 +22,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <a href="{{ route('ventas.create') }}"
-                           class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ml-2">
+                            class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ml-2">
                             Add
                         </a>
                         <table class="table">
@@ -39,12 +39,19 @@
                                 @foreach ($ventas as $venta)
                                     <tr>
                                         <td>{{ $venta->id }}</td>
-                                        <td>{{ $venta->vehiculo_marca}}</td>
+                                        <td>{{ $venta->vehiculo_marca }}</td>
                                         <td>{{ $venta->cliente_nombre }}</td>
                                         <td>{{ $venta->fecha_venta }}</td>
                                         <td>{{ $venta->precio_final }}</td>
                                         <td>
-                                            actions
+                                            <form
+                                                action="{{ route('ventas.destroy', ['venta' => $venta->id]) }}"
+                                                method="POST" style="display: inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" value="Delete"
+                                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
