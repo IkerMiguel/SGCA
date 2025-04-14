@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,10 +14,17 @@ class VentaController extends Controller
     public function index()
     {
         $ventas = DB::table('ventas')
-            ->join('clientes', 'ventas.cliente_id', '=', 'clientes.id')
-            ->join('vehiculos', 'ventas.vehiculo_id', '=', 'vehiculos.id')
-            ->select('ventas.*', 'clientes.nombre as cliente_nombre', 'vehiculos.marca as vehiculo_marca')
-            ->get();
+        ->join('clientes', 'ventas.cliente_id', '=', 'clientes.id')
+        ->join('vehiculos', 'ventas.vehiculo_id', '=', 'vehiculos.id')
+        ->select(
+            'ventas.id',
+            'ventas.fecha_venta',
+            'ventas.precio_final',
+            'clientes.nombre as cliente_nombre',
+            'vehiculos.marca as vehiculo_marca'
+        )
+        ->get();
+
         return view('venta.index', ['ventas' => $ventas]);
     }
 
@@ -25,7 +33,13 @@ class VentaController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = DB::table('clientes')->get();
+        $vehiculos = DB::table('vehiculos')->get();
+
+        return view('venta.new', [
+            'clientes' => $clientes,
+            'vehiculos' => $vehiculos
+        ]);
     }
 
     /**
@@ -33,7 +47,15 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venta = new Venta();
+
+        $venta->vehiculo_id = $request->vehiculo_id;
+        $venta->cliente_id = $request->cliente_id;
+        $venta->fecha_venta = $request->fecha_venta;
+        $venta->precio_final = $request->precio_total;
+        $venta->save();
+
+        return redirect()->route('ventas.index');
     }
 
     /**
