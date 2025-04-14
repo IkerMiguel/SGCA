@@ -44,6 +44,10 @@
                                         <td>{{ $venta->fecha_venta }}</td>
                                         <td>{{ $venta->precio_final }}</td>
                                         <td>
+                                            <a href="{{ route('ventas.edit', ['venta' => $venta->id]) }}"
+                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                 Edit
+                                             </a>
                                             <form
                                                 action="{{ route('ventas.destroy', ['venta' => $venta->id]) }}"
                                                 method="POST" style="display: inline-block">
