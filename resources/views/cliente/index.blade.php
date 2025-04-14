@@ -47,7 +47,14 @@
                                         <td>{{ $cliente->email }}</td>
                                         <td>{{ $cliente->direccion }}</td>
                                         <td>
-                                            Actions
+                                            <form action="{{ route('clientes.destroy', ['cliente' => $cliente->id]) }}"
+                                                  method="POST" style="display: inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit"
+                                                       value="Delete"
+                                                       class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
