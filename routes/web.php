@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function (){
 
 Route::middleware('auth')->group(function (){
     Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
+    Route::post('/ventas', [VentaController::class, 'store'])->name('ventas.store');
+    Route::get('/ventas/create', [VentaController::class, 'create'])->name('ventas.create');
 });
 
 require __DIR__.'/auth.php';
