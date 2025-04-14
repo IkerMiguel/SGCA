@@ -47,6 +47,10 @@
                                         <td>{{ $cliente->email }}</td>
                                         <td>{{ $cliente->direccion }}</td>
                                         <td>
+                                            <a href="{{ route('clientes.edit', ['cliente' => $cliente->id]) }}"
+                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                Edit
+                                            </a>
                                             <form action="{{ route('clientes.destroy', ['cliente' => $cliente->id]) }}"
                                                   method="POST" style="display: inline-block">
                                                 @csrf
