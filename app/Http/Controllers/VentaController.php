@@ -71,7 +71,14 @@ class VentaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $venta = Venta::find($id);
+        $clientes = DB::table('clientes')->get();
+        $vehiculos = DB::table('vehiculos')->get();
+        return view('venta.edit', [
+            'venta' => $venta,
+            'clientes' => $clientes,
+            'vehiculos' => $vehiculos
+        ]);
     }
 
     /**
@@ -79,7 +86,15 @@ class VentaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $venta = Venta::find($id);
+
+        $venta->vehiculo_id = $request->vehiculo_id;
+        $venta->cliente_id = $request->cliente_id;
+        $venta->fecha_venta = $request->fecha_venta;
+        $venta->precio_final = $request->precio_total;
+        $venta->save();
+
+        return redirect()->route('ventas.index');
     }
 
     /**

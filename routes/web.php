@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function (){
     Route::post('/ventas', [VentaController::class, 'store'])->name('ventas.store');
     Route::get('/ventas/create', [VentaController::class, 'create'])->name('ventas.create');
     Route::delete('/ventas/{venta}', [VentaController::class, 'destroy'])->name('ventas.destroy');
+    Route::put('/ventas/{venta}', [VentaController::class, 'update'])->name('ventas.update');
+    Route::get('/ventas/{venta}/edit', [VentaController::class, 'edit'])->name('ventas.edit');
 });
 
 require __DIR__.'/auth.php';
