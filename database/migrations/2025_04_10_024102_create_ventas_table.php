@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('vehiculo_id')->constrained('vehiculos')->onDelete('cascade');
             $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
             $table->date('fecha_venta');
-            $table->decimal('precio_final',total:8,places:2);
+            $table->decimal('precio_final',total:12,places:2);
             $table->timestamps();
         });
     }
